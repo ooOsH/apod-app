@@ -11,6 +11,10 @@ export default defineNuxtConfig({
     },
   },
 
+  runtimeConfig: {
+    NASA_API_KEY: process.env.NASA_API_KEY,
+  },
+
   compatibilityDate: '2024-11-01',
 
   devtools: { enabled: true },
