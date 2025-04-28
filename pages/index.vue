@@ -1,7 +1,9 @@
 <script setup lang="ts">
 const apod = ref({})
 
-const { data, pending, error } = await useFetch('/api/apod')
+const { data, pending, error } = await useFetch('/api/apod', {
+  // server: false, // For testing cached result
+})
 
 if (!error.value && data.value) {
   apod.value = data.value
