@@ -28,18 +28,27 @@ const formatDate = (value) => {
       v-else
       class="space-y-4 bg-white rounded-2xl shadow-md p-6 max-w-xl mx-auto"
     >
-      <NuxtImg
-        :src="apod.url"
-        :alt="apod.title"
-        :title="apod.title"
-        class="100vw"
-      />
+      <picture>
+        <source
+          v-if="apod.hdurl"
+          :srcset="apod.hdurl"
+          type="image/jpeg"
+          media="(dynamic-range: high)"
+        />
+        <img
+          :src="apod.url"
+          :alt="apod.title"
+          class="w-full rounded-xl"
+          loading="lazy"
+        />
+      </picture>
       <h1 class="text-3xl font-bold">{{ apod.title }}</h1>
       <p class="text-gray-500">
         {{ apod.copyright }} -
         <time :datetime="apod.date">{{ formatDate(apod.date) }}</time>
       </p>
       <p class="text-sm/6">{{ apod.explanation }}</p>
+      <pre>{{ apod }}</pre>
     </div>
   </section>
 </template>
