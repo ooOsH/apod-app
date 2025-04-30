@@ -28,27 +28,31 @@ const formatDate = (value: string) => {
       v-else-if="apod"
       class="space-y-4 bg-white rounded-2xl shadow-md p-6 max-w-xl mx-auto"
     >
-      <picture>
-        <source
-          v-if="apod?.hdurl"
-          :srcset="apod?.hdurl"
-          type="image/jpeg"
-          media="(dynamic-range: high)"
-        />
-        <img
-          :src="apod?.url"
-          :alt="apod?.title"
-          class="w-full rounded-xl"
-          loading="lazy"
-        />
-      </picture>
-      <h1 class="text-3xl font-bold">{{ apod?.title }}</h1>
+      <div class="relative z-10">
+        <picture>
+          <source
+            v-if="apod?.res?.hdurl"
+            :srcset="apod?.res?.hdurl"
+            type="image/jpeg"
+            media="(dynamic-range: high)"
+          />
+          <img
+            :src="apod?.res?.url"
+            :alt="apod?.res?.title"
+            class="w-full rounded-xl"
+            loading="lazy"
+          />
+        </picture>
+        <div class="absolute right-5 bottom-2 z-20 text-amber-400 font-mono text-sm">
+          {{ apod?.timestamp }}
+        </div>
+      </div>
+      <h1 class="text-3xl font-bold">{{ apod?.res?.title }}</h1>
       <p class="text-gray-500">
-        {{ apod?.copyright }} -
-        <time :datetime="apod?.date">{{ formatDate(apod?.date) }}</time>
+        {{ apod?.res?.copyright }} -
+        <time :datetime="apod?.res?.date">{{ formatDate(apod?.res?.date) }}</time>
       </p>
-      <p class="text-sm/6">{{ apod?.explanation }}</p>
+      <p class="text-sm/6">{{ apod?.res?.explanation }}</p>
     </div>
-    <pre>{{ apod }}</pre>
   </section>
 </template>
