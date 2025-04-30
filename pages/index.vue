@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const apod = ref<ApodImage | null>(null)
+const apod = ref<Apod | null>(null)
 
-const { data, pending, error } = await useFetch<ApodImage>('/api/apod', {
+const { data, pending, error } = await useFetch<Apod>('/api/apod', {
   // server: false, // For testing cached result
 })
 
