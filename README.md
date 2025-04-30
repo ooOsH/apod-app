@@ -36,7 +36,7 @@ pnpm preview
 
 First time using caching in Nitro - documentation was clear!
 
-I used Nitro's built-in method `defineCachedEventHandler` to cache the API respone, setting the max age parameter to 12 hours for the desired affect. To test its working correctly I used the server false parameter when calling the endpoin via useFetch composable in the view template.
+I used Nitro's built-in method `defineCachedEventHandler` to cache the API respone, setting the max age parameter to 12 hours for the desired affect. To test its working correctly I used the server false parameter when calling the endpoin via `useFetch` composable in the view template.
 
 For part of the bonus I realised I could set the timestamp of when the cache was set to return along with the response - tested via closing down the server and starting again to see if it was correct.
 
