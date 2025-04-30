@@ -43,3 +43,5 @@ For part of the bonus I realised I could set the timestamp of when the cache was
 ## Notes
 
 Edge case - I haven't handled the response if the APOD is a video - I would need to go back into the code and add a condition into the template to render via `media_type`
+
+Trade off - I initally wanted to take advantage of the Nuxt image package to display the image but it didn't see to respect the media type param for `dynamic-range: high` so reverted back to the standard HTML picture element
