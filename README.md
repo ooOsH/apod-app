@@ -12,9 +12,8 @@ pnpm install
 I personally use pnpm due to its speed and efficiency but any other package manager could be used just delete the lock file
 
 ### Run the app
-Rename the env file to get the API key
 ```bash
-sample.env to .env
+sample.env to .env and add the key provided
 ```
 
 ### Development Server
