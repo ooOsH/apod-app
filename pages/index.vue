@@ -17,7 +17,7 @@ const formatDate = (value: string) => {
 
 <template>
   <section class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div v-if="pending" class="text-lg text-gray-500 text-center">
+    <div v-if="pending" class="text-lg text-gray-500 dark:text-white text-center">
       Loading Astronomy Picture of the Day...
     </div>
     <div v-else-if="error" class="text-lg text-red-500 text-center">
@@ -26,7 +26,7 @@ const formatDate = (value: string) => {
     </div>
     <div
       v-else-if="apod"
-      class="space-y-4 bg-white rounded-2xl shadow-md p-6 max-w-xl mx-auto"
+      class="space-y-4 bg-white rounded-2xl dark:bg-black shadow-md p-6 max-w-xl mx-auto"
     >
       <div class="relative z-10">
         <picture>
@@ -47,12 +47,12 @@ const formatDate = (value: string) => {
           {{ apod?.timestamp }}
         </div>
       </div>
-      <h1 class="text-3xl font-bold">{{ apod?.res?.title }}</h1>
-      <p class="text-gray-500">
+      <h1 class="text-3xl font-bold dark:text-slate-50">{{ apod?.res?.title }}</h1>
+      <p class="text-gray-500 dark:text-slate-400">
         {{ apod?.res?.copyright }} -
         <time :datetime="apod?.res?.date">{{ formatDate(apod?.res?.date) }}</time>
       </p>
-      <p class="text-sm/6">{{ apod?.res?.explanation }}</p>
+      <p class="text-sm/6 dark:dark:text-slate-300">{{ apod?.res?.explanation }}</p>
     </div>
   </section>
 </template>
