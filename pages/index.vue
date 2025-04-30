@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const apod = ref({})
+const apod = ref<ApodImage | null>(null)
 
-const { data, pending, error } = await useFetch('/api/apod', {
+const { data, pending, error } = await useFetch<ApodImage>('/api/apod', {
   // server: false, // For testing cached result
 })
 
@@ -9,7 +9,7 @@ if (!error.value && data.value) {
   apod.value = data.value
 }
 
-const formatDate = (value) => {
+const formatDate = (value: string) => {
   const date = new Date(value)
   return date.toLocaleDateString('en-GB', { dateStyle: 'full' })
 }
@@ -25,30 +25,30 @@ const formatDate = (value) => {
       <small class="text-base text-red-500">{{ error.message }}</small>
     </div>
     <div
-      v-else
+      v-else-if="apod"
       class="space-y-4 bg-white rounded-2xl shadow-md p-6 max-w-xl mx-auto"
     >
       <picture>
         <source
-          v-if="apod.hdurl"
-          :srcset="apod.hdurl"
+          v-if="apod?.hdurl"
+          :srcset="apod?.hdurl"
           type="image/jpeg"
           media="(dynamic-range: high)"
         />
         <img
-          :src="apod.url"
-          :alt="apod.title"
+          :src="apod?.url"
+          :alt="apod?.title"
           class="w-full rounded-xl"
           loading="lazy"
         />
       </picture>
-      <h1 class="text-3xl font-bold">{{ apod.title }}</h1>
+      <h1 class="text-3xl font-bold">{{ apod?.title }}</h1>
       <p class="text-gray-500">
-        {{ apod.copyright }} -
-        <time :datetime="apod.date">{{ formatDate(apod.date) }}</time>
+        {{ apod?.copyright }} -
+        <time :datetime="apod?.date">{{ formatDate(apod?.date) }}</time>
       </p>
-      <p class="text-sm/6">{{ apod.explanation }}</p>
-      <pre>{{ apod }}</pre>
+      <p class="text-sm/6">{{ apod?.explanation }}</p>
     </div>
+    <pre>{{ apod }}</pre>
   </section>
 </template>
